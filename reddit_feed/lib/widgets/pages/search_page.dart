@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_feed/providers/search_provider.dart';
+import 'package:reddit_feed/widgets/components/empty_screen.dart';
+import 'package:reddit_feed/widgets/components/post.dart';
 
 class SearchPage extends ConsumerStatefulWidget {
   const SearchPage({super.key});
@@ -47,24 +49,40 @@ class _SearchPageState extends ConsumerState<SearchPage> {
           final searchText = ref.watch(searchTextProvider.notifier).state;
 
           if (isLoading == true) {
-            return Center(
-              child: Text("Loading"),
+            return const Center(
+              child: CircularProgressIndicator(),
             );
           } else if (isError == true) {
-            return Center(
-              child: Text("Error"),
+            return EmptyScreen(
+              type: EmptyScreenType.empty,
+              action: () {
+                ref.read(searchProvider.notifier).loadPosts();
+              },
             );
           } else if (searchText.isEmpty) {
-            return Center(
-              child: Text("Начните поиск"),
+            return const Center(
+              child: Text("Начните поиск",
+                  style: TextStyle(fontWeight: FontWeight.w500, fontSize: 21)),
             );
           }
 
-          return ListView.builder(
-            itemCount: posts.length,
-            itemBuilder: (context, index) {
-              return Text(posts[index].title);
-            },
+          return Container(
+            color: Theme.of(context).canvasColor,
+            child: ListView.builder(
+              itemCount: posts.length,
+              itemBuilder: (context, index) {
+                final post = posts[index];
+                return Post(
+                    thumbnail: post.thumbnail,
+                    title: post.title,
+                    selftext: post.selftext,
+                    thumbnail_width: post.thumbnail_width,
+                    thumbnail_height: post.thumbnail_height,
+                    ups: post.ups,
+                    downs: post.downs,
+                    num_comments: post.num_comments);
+              },
+            ),
           );
         },
       ),
