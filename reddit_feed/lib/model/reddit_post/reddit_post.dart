@@ -11,7 +11,12 @@ class RedditPost with _$RedditPost {
     required String id,
     required String title,
     required String selftext,
-    required String? thumbnail_url,
+    required String thumbnail,
+    required int? thumbnail_width,
+    required int? thumbnail_height,
+    required int ups,
+    required int downs,
+    required int? num_comments,
   }) = _RedditPost;
 
   factory RedditPost.fromJson(Map<String, dynamic> json) =>

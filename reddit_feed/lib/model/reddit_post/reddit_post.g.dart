@@ -11,7 +11,12 @@ _$_RedditPost _$$_RedditPostFromJson(Map<String, dynamic> json) =>
       id: json['id'] as String,
       title: json['title'] as String,
       selftext: json['selftext'] as String,
-      thumbnail_url: json['thumbnail_url'] as String?,
+      thumbnail: json['thumbnail'] as String,
+      thumbnail_width: json['thumbnail_width'] as int?,
+      thumbnail_height: json['thumbnail_height'] as int?,
+      ups: json['ups'] as int,
+      downs: json['downs'] as int,
+      num_comments: json['num_comments'] as int?,
     );
 
 Map<String, dynamic> _$$_RedditPostToJson(_$_RedditPost instance) =>
@@ -19,5 +24,10 @@ Map<String, dynamic> _$$_RedditPostToJson(_$_RedditPost instance) =>
       'id': instance.id,
       'title': instance.title,
       'selftext': instance.selftext,
-      'thumbnail_url': instance.thumbnail_url,
+      'thumbnail': instance.thumbnail,
+      'thumbnail_width': instance.thumbnail_width,
+      'thumbnail_height': instance.thumbnail_height,
+      'ups': instance.ups,
+      'downs': instance.downs,
+      'num_comments': instance.num_comments,
     };

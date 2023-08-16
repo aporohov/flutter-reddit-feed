@@ -23,7 +23,12 @@ mixin _$RedditPost {
   String get id => throw _privateConstructorUsedError;
   String get title => throw _privateConstructorUsedError;
   String get selftext => throw _privateConstructorUsedError;
-  String? get thumbnail_url => throw _privateConstructorUsedError;
+  String get thumbnail => throw _privateConstructorUsedError;
+  int? get thumbnail_width => throw _privateConstructorUsedError;
+  int? get thumbnail_height => throw _privateConstructorUsedError;
+  int get ups => throw _privateConstructorUsedError;
+  int get downs => throw _privateConstructorUsedError;
+  int? get num_comments => throw _privateConstructorUsedError;
 
   Map<String, dynamic> toJson() => throw _privateConstructorUsedError;
   @JsonKey(ignore: true)
@@ -37,7 +42,16 @@ abstract class $RedditPostCopyWith<$Res> {
           RedditPost value, $Res Function(RedditPost) then) =
       _$RedditPostCopyWithImpl<$Res, RedditPost>;
   @useResult
-  $Res call({String id, String title, String selftext, String? thumbnail_url});
+  $Res call(
+      {String id,
+      String title,
+      String selftext,
+      String thumbnail,
+      int? thumbnail_width,
+      int? thumbnail_height,
+      int ups,
+      int downs,
+      int? num_comments});
 }
 
 /// @nodoc
@@ -56,7 +70,12 @@ class _$RedditPostCopyWithImpl<$Res, $Val extends RedditPost>
     Object? id = null,
     Object? title = null,
     Object? selftext = null,
-    Object? thumbnail_url = freezed,
+    Object? thumbnail = null,
+    Object? thumbnail_width = freezed,
+    Object? thumbnail_height = freezed,
+    Object? ups = null,
+    Object? downs = null,
+    Object? num_comments = freezed,
   }) {
     return _then(_value.copyWith(
       id: null == id
@@ -71,10 +90,30 @@ class _$RedditPostCopyWithImpl<$Res, $Val extends RedditPost>
           ? _value.selftext
           : selftext // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail_url: freezed == thumbnail_url
-          ? _value.thumbnail_url
-          : thumbnail_url // ignore: cast_nullable_to_non_nullable
-              as String?,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail_width: freezed == thumbnail_width
+          ? _value.thumbnail_width
+          : thumbnail_width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      thumbnail_height: freezed == thumbnail_height
+          ? _value.thumbnail_height
+          : thumbnail_height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ups: null == ups
+          ? _value.ups
+          : ups // ignore: cast_nullable_to_non_nullable
+              as int,
+      downs: null == downs
+          ? _value.downs
+          : downs // ignore: cast_nullable_to_non_nullable
+              as int,
+      num_comments: freezed == num_comments
+          ? _value.num_comments
+          : num_comments // ignore: cast_nullable_to_non_nullable
+              as int?,
     ) as $Val);
   }
 }
@@ -87,7 +126,16 @@ abstract class _$$_RedditPostCopyWith<$Res>
       __$$_RedditPostCopyWithImpl<$Res>;
   @override
   @useResult
-  $Res call({String id, String title, String selftext, String? thumbnail_url});
+  $Res call(
+      {String id,
+      String title,
+      String selftext,
+      String thumbnail,
+      int? thumbnail_width,
+      int? thumbnail_height,
+      int ups,
+      int downs,
+      int? num_comments});
 }
 
 /// @nodoc
@@ -104,7 +152,12 @@ class __$$_RedditPostCopyWithImpl<$Res>
     Object? id = null,
     Object? title = null,
     Object? selftext = null,
-    Object? thumbnail_url = freezed,
+    Object? thumbnail = null,
+    Object? thumbnail_width = freezed,
+    Object? thumbnail_height = freezed,
+    Object? ups = null,
+    Object? downs = null,
+    Object? num_comments = freezed,
   }) {
     return _then(_$_RedditPost(
       id: null == id
@@ -119,10 +172,30 @@ class __$$_RedditPostCopyWithImpl<$Res>
           ? _value.selftext
           : selftext // ignore: cast_nullable_to_non_nullable
               as String,
-      thumbnail_url: freezed == thumbnail_url
-          ? _value.thumbnail_url
-          : thumbnail_url // ignore: cast_nullable_to_non_nullable
-              as String?,
+      thumbnail: null == thumbnail
+          ? _value.thumbnail
+          : thumbnail // ignore: cast_nullable_to_non_nullable
+              as String,
+      thumbnail_width: freezed == thumbnail_width
+          ? _value.thumbnail_width
+          : thumbnail_width // ignore: cast_nullable_to_non_nullable
+              as int?,
+      thumbnail_height: freezed == thumbnail_height
+          ? _value.thumbnail_height
+          : thumbnail_height // ignore: cast_nullable_to_non_nullable
+              as int?,
+      ups: null == ups
+          ? _value.ups
+          : ups // ignore: cast_nullable_to_non_nullable
+              as int,
+      downs: null == downs
+          ? _value.downs
+          : downs // ignore: cast_nullable_to_non_nullable
+              as int,
+      num_comments: freezed == num_comments
+          ? _value.num_comments
+          : num_comments // ignore: cast_nullable_to_non_nullable
+              as int?,
     ));
   }
 }
@@ -134,7 +207,12 @@ class _$_RedditPost implements _RedditPost {
       {required this.id,
       required this.title,
       required this.selftext,
-      required this.thumbnail_url});
+      required this.thumbnail,
+      required this.thumbnail_width,
+      required this.thumbnail_height,
+      required this.ups,
+      required this.downs,
+      required this.num_comments});
 
   factory _$_RedditPost.fromJson(Map<String, dynamic> json) =>
       _$$_RedditPostFromJson(json);
@@ -146,11 +224,21 @@ class _$_RedditPost implements _RedditPost {
   @override
   final String selftext;
   @override
-  final String? thumbnail_url;
+  final String thumbnail;
+  @override
+  final int? thumbnail_width;
+  @override
+  final int? thumbnail_height;
+  @override
+  final int ups;
+  @override
+  final int downs;
+  @override
+  final int? num_comments;
 
   @override
   String toString() {
-    return 'RedditPost(id: $id, title: $title, selftext: $selftext, thumbnail_url: $thumbnail_url)';
+    return 'RedditPost(id: $id, title: $title, selftext: $selftext, thumbnail: $thumbnail, thumbnail_width: $thumbnail_width, thumbnail_height: $thumbnail_height, ups: $ups, downs: $downs, num_comments: $num_comments)';
   }
 
   @override
@@ -162,14 +250,22 @@ class _$_RedditPost implements _RedditPost {
             (identical(other.title, title) || other.title == title) &&
             (identical(other.selftext, selftext) ||
                 other.selftext == selftext) &&
-            (identical(other.thumbnail_url, thumbnail_url) ||
-                other.thumbnail_url == thumbnail_url));
+            (identical(other.thumbnail, thumbnail) ||
+                other.thumbnail == thumbnail) &&
+            (identical(other.thumbnail_width, thumbnail_width) ||
+                other.thumbnail_width == thumbnail_width) &&
+            (identical(other.thumbnail_height, thumbnail_height) ||
+                other.thumbnail_height == thumbnail_height) &&
+            (identical(other.ups, ups) || other.ups == ups) &&
+            (identical(other.downs, downs) || other.downs == downs) &&
+            (identical(other.num_comments, num_comments) ||
+                other.num_comments == num_comments));
   }
 
   @JsonKey(ignore: true)
   @override
-  int get hashCode =>
-      Object.hash(runtimeType, id, title, selftext, thumbnail_url);
+  int get hashCode => Object.hash(runtimeType, id, title, selftext, thumbnail,
+      thumbnail_width, thumbnail_height, ups, downs, num_comments);
 
   @JsonKey(ignore: true)
   @override
@@ -190,7 +286,12 @@ abstract class _RedditPost implements RedditPost {
       {required final String id,
       required final String title,
       required final String selftext,
-      required final String? thumbnail_url}) = _$_RedditPost;
+      required final String thumbnail,
+      required final int? thumbnail_width,
+      required final int? thumbnail_height,
+      required final int ups,
+      required final int downs,
+      required final int? num_comments}) = _$_RedditPost;
 
   factory _RedditPost.fromJson(Map<String, dynamic> json) =
       _$_RedditPost.fromJson;
@@ -202,7 +303,17 @@ abstract class _RedditPost implements RedditPost {
   @override
   String get selftext;
   @override
-  String? get thumbnail_url;
+  String get thumbnail;
+  @override
+  int? get thumbnail_width;
+  @override
+  int? get thumbnail_height;
+  @override
+  int get ups;
+  @override
+  int get downs;
+  @override
+  int? get num_comments;
   @override
   @JsonKey(ignore: true)
   _$$_RedditPostCopyWith<_$_RedditPost> get copyWith =>
