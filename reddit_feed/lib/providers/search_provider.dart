@@ -17,13 +17,16 @@ class SearchNotifier extends StateNotifier<FeedState> {
     state = state.copyWith(posts: [], isLoading: false, isError: false);
 
     ref.listen(searchTextProvider, (previous, next) {
-      loadPosts(next);
+      loadPosts();
     });
   }
 
   Ref ref;
 
-  loadPosts(String searchText) async {
+  /// Загрузить посты
+  loadPosts() async {
+    final searchText = ref.watch(searchTextProvider.notifier).state;
+
     if (searchText.isEmpty) {
       state = state.copyWith(posts: [], isLoading: false, isError: false);
       return;
