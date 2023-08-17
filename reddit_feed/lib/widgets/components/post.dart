@@ -90,10 +90,7 @@ class Post extends StatelessWidget {
     return LayoutBuilder(
       builder: (context, constraints) {
         final thumbnailAspectRatio = thumbnail_height! / thumbnail_width!;
-
         final imageHeight = constraints.maxWidth * thumbnailAspectRatio;
-
-        print("$thumbnail_height, $thumbnail_width");
 
         return CachedNetworkImage(
           imageUrl: thumbnail,
@@ -105,7 +102,7 @@ class Post extends StatelessWidget {
           ),
           placeholder: (context, url) => const Center(
               heightFactor: 4,
-              child: CircularProgressIndicator(strokeWidth: 1.5)),
+              child: CircularProgressIndicator(strokeWidth: 2)),
           errorWidget: (context, url, error) => const Center(
               heightFactor: 5,
               child: Icon(

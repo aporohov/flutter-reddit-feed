@@ -37,7 +37,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
           decoration: InputDecoration(
               hintText: 'Поиск',
               hintStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.onPrimary)),
+                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
           onChanged: _onSearchChanged,
         ),
       ),
@@ -50,7 +50,7 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
           if (isLoading == true) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(strokeWidth: 2),
             );
           } else if (isError == true) {
             return EmptyScreen(

@@ -3,6 +3,7 @@ import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_feed/providers/feed_provider.dart';
 import 'package:reddit_feed/widgets/components/empty_screen.dart';
 import 'package:reddit_feed/widgets/components/post.dart';
+import 'package:reddit_feed/widgets/components/dark_theme_button.dart';
 
 class FeedPage extends ConsumerStatefulWidget {
   const FeedPage({super.key});
@@ -21,8 +22,10 @@ class _FeedPageState extends ConsumerState<FeedPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-          backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-          title: const Text("Feed")),
+        backgroundColor: Theme.of(context).colorScheme.inversePrimary,
+        title: const Text("Feed"),
+        actions: const [ThemeButton()],
+      ),
       body: Consumer(
         builder: (context, ref, child) {
           final isLoading = ref.watch(feedProvider).isLoading;
@@ -31,7 +34,7 @@ class _FeedPageState extends ConsumerState<FeedPage> {
 
           if (isLoading == true) {
             return const Center(
-              child: CircularProgressIndicator(),
+              child: CircularProgressIndicator(strokeWidth: 2),
             );
           } else if (isError == true) {
             return EmptyScreen(
@@ -73,4 +76,9 @@ class _FeedPageState extends ConsumerState<FeedPage> {
       ),
     );
   }
+
+  // _changeAppTheme() {
+  //   ref.read(darkThemeProvider.notifier).state =
+  //       !ref.read(darkThemeProvider.notifier).state;
+  // }
 }
