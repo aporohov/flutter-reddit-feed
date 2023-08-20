@@ -76,9 +76,4 @@ class _FeedPageState extends ConsumerState<FeedPage> {
       ),
     );
   }
-
-  // _changeAppTheme() {
-  //   ref.read(darkThemeProvider.notifier).state =
-  //       !ref.read(darkThemeProvider.notifier).state;
-  // }
 }

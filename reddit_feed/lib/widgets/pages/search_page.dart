@@ -64,6 +64,13 @@ class _SearchPageState extends ConsumerState<SearchPage> {
               child: Text("Начните поиск",
                   style: TextStyle(fontWeight: FontWeight.w500, fontSize: 21)),
             );
+          } else if (posts.isEmpty) {
+            return EmptyScreen(
+              type: EmptyScreenType.empty,
+              action: () {
+                ref.read(searchProvider.notifier).loadPosts();
+              },
+            );
           }
 
           return Container(
