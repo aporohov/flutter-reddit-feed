@@ -3,6 +3,7 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/intl.dart';
 
 class Post extends StatelessWidget {
   const Post(
@@ -125,7 +126,7 @@ class Post extends StatelessWidget {
           title,
           maxLines: 2,
           overflow: TextOverflow.ellipsis,
-          style: const TextStyle(fontWeight: FontWeight.w500, fontSize: 18),
+          style: const TextStyle(fontWeight: FontWeight.w600, fontSize: 20),
         ),
         _whiteSpace(),
       ]);
@@ -174,7 +175,7 @@ class _PostBadge extends StatelessWidget {
         Icon(iconData),
         const SizedBox(width: 4),
         Text(
-          "$value",
+          NumberFormat.compact().format(value),
           style: const TextStyle(fontSize: 18),
         )
       ],
