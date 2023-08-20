@@ -22,6 +22,7 @@ class MyApp extends ConsumerWidget {
 
     final themeDark = ThemeData(
       brightness: Brightness.dark,
+      primaryColor: Colors.purple[200],
       canvasColor: Colors.black,
       cardColor: Colors.grey[800],
       useMaterial3: true,
