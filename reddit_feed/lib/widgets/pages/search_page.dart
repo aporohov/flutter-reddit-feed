@@ -1,11 +1,12 @@
-import 'dart:async';
-
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_feed/providers/search_provider.dart';
 import 'package:reddit_feed/widgets/components/empty_screen.dart';
+import 'package:reddit_feed/widgets/components/loading_indicator.dart';
 import 'package:reddit_feed/widgets/components/post.dart';
+import 'package:reddit_feed/widgets/components/search_field.dart';
 
+/// Виджет страницы поиска
 class SearchPage extends ConsumerStatefulWidget {
   const SearchPage({super.key});
 
@@ -14,32 +15,12 @@ class SearchPage extends ConsumerStatefulWidget {
 }
 
 class _SearchPageState extends ConsumerState<SearchPage> {
-  /// Задержка для событий строки поиска
-  Timer? _debounce;
-
-  @override
-  void initState() {
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    _debounce?.cancel();
-    super.dispose();
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
-        title: TextFormField(
-          decoration: InputDecoration(
-              hintText: 'Поиск',
-              hintStyle:
-                  TextStyle(color: Theme.of(context).colorScheme.onBackground)),
-          onChanged: _onSearchChanged,
-        ),
+        title: const SearchField(),
       ),
       body: Consumer(
         builder: (context, ref, child) {
@@ -50,11 +31,11 @@ class _SearchPageState extends ConsumerState<SearchPage> {
 
           if (isLoading == true) {
             return const Center(
-              child: CircularProgressIndicator(strokeWidth: 2),
+              child: LoadingIndicator(),
             );
           } else if (isError == true) {
             return EmptyScreen(
-              type: EmptyScreenType.empty,
+              type: EmptyScreenType.error,
               action: () {
                 ref.read(searchProvider.notifier).loadPosts();
               },
@@ -94,12 +75,5 @@ class _SearchPageState extends ConsumerState<SearchPage> {
         },
       ),
     );
-  }
-
-  _onSearchChanged(String searchText) {
-    if (_debounce?.isActive ?? false) _debounce?.cancel();
-    _debounce = Timer(const Duration(milliseconds: 500), () {
-      ref.read(searchTextProvider.notifier).state = searchText;
-    });
   }
 }
