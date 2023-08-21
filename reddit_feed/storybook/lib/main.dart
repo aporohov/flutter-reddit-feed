@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_feed/widgets/components/dark_theme_button.dart';
 import 'package:reddit_feed/widgets/components/empty_screen.dart';
+import 'package:reddit_feed/widgets/components/loading_indicator.dart';
 import 'package:reddit_feed/widgets/components/post.dart';
+import 'package:reddit_feed/widgets/components/search_field.dart';
 import 'package:storybook_flutter/storybook_flutter.dart';
 
 final _plugins = initializePlugins(
@@ -102,13 +104,29 @@ class MyApp extends StatelessWidget {
                           ])),
                 )),
         Story(
+            name: 'Search Field',
+            builder: (context) => Container(
+                color: Colors.purple[100],
+                child: const Padding(
+                  padding: EdgeInsets.all(20.0),
+                  child: Center(child: SearchField()),
+                ))),
+        Story(
             name: 'Theme Button',
             builder: (context) => Container(
                   color: Colors.white,
-                  child: Center(
-                    child: const ThemeButton(),
+                  child: const Center(
+                    child: ThemeButton(),
                   ),
-                ))
+                )),
+        Story(
+            name: 'Loading Indicator',
+            builder: (context) => Container(
+                  color: Colors.white,
+                  child: const Center(
+                    child: LoadingIndicator(),
+                  ),
+                )),
       ],
     );
   }
