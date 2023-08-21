@@ -4,7 +4,9 @@ import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
+import 'package:reddit_feed/widgets/components/loading_indicator.dart';
 
+/// Виджет ячейки поста
 class Post extends StatelessWidget {
   const Post(
       {super.key,
@@ -65,7 +67,7 @@ class Post extends StatelessWidget {
     ];
 
     return ClipRRect(
-      borderRadius: const BorderRadius.all(Radius.circular(16)),
+      borderRadius: const BorderRadius.all(Radius.circular(20)),
       child: Container(
         color: Theme.of(context).cardColor,
         child: Column(children: cardContent),
@@ -101,11 +103,11 @@ class Post extends StatelessWidget {
               image: DecorationImage(image: imageProvider, fit: BoxFit.cover),
             ),
           ),
-          placeholder: (context, url) => const Center(
-              heightFactor: 4,
-              child: CircularProgressIndicator(strokeWidth: 2)),
+          placeholder: (context, url) => SizedBox(
+              height: imageHeight,
+              child: const Center(child: LoadingIndicator())),
           errorWidget: (context, url, error) => const Center(
-              heightFactor: 5,
+              heightFactor: 3,
               child: Icon(
                 Icons.error,
                 size: 50,
@@ -159,6 +161,7 @@ class Post extends StatelessWidget {
   }
 }
 
+/// Виджет для бейджа (лайки/дизлайки/комменты)
 class _PostBadge extends StatelessWidget {
   const _PostBadge({required this.iconData, required this.value});
 

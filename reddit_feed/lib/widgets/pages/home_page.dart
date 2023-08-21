@@ -6,6 +6,7 @@ import 'package:reddit_feed/widgets/pages/search_page.dart';
 /// Провайдер выбранной страницы
 final homeNavigationProvider = StateProvider<int>((ref) => 0);
 
+/// Виджет для HomePage
 class MyHomePage extends ConsumerStatefulWidget {
   const MyHomePage({super.key});
 
@@ -14,7 +15,7 @@ class MyHomePage extends ConsumerStatefulWidget {
 }
 
 class _MyHomePageState extends ConsumerState<MyHomePage> {
-  /// Виджеты для страниц
+  /// Виджеты страниц Навигейшен бара
   final _pages = <Widget>[const FeedPage(), const SearchPage()];
 
   @override

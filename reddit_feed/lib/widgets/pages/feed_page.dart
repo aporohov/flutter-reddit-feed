@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:reddit_feed/providers/feed_provider.dart';
 import 'package:reddit_feed/widgets/components/empty_screen.dart';
+import 'package:reddit_feed/widgets/components/loading_indicator.dart';
 import 'package:reddit_feed/widgets/components/post.dart';
 import 'package:reddit_feed/widgets/components/dark_theme_button.dart';
 
+/// Виджет страницы новостей
 class FeedPage extends ConsumerStatefulWidget {
   const FeedPage({super.key});
 
@@ -34,7 +36,7 @@ class _FeedPageState extends ConsumerState<FeedPage> {
 
           if (isLoading == true) {
             return const Center(
-              child: CircularProgressIndicator(strokeWidth: 2),
+              child: LoadingIndicator(),
             );
           } else if (isError == true) {
             return EmptyScreen(

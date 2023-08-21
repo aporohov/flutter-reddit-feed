@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 enum EmptyScreenType { error, empty }
 
+/// Виджет страницы-заглушки
 class EmptyScreen extends StatelessWidget {
   const EmptyScreen({super.key, required this.action, required this.type});
 

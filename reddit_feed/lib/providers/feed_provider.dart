@@ -13,8 +13,6 @@ class FeedNotifier extends StateNotifier<FeedState> {
   }
 
   loadPosts() async {
-    // state = state.copyWith(posts: [], isLoading: false, isError: false);
-    // return;
     state = state.copyWith(isLoading: true, isError: false);
 
     getFlutterPosts().then((posts) {
